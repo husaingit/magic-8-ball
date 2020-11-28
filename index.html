@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,
+            initial-scale=1,maximum-scale=1,
+            shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
+    <style>
+        img {
+            max-width: 20%;
+            /* max-height: 30%; */
+            margin-left: 40%;
+            padding: 20px;
+        }
+        
+        @media(max-width:768px) {
+            img {
+                max-width: 200px;
+                margin-left: 25%;
+            }
+        }
+        /* img:hover {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: 0.5s;
+        } */
+        
+        .hid {
+            display: none;
+            /* margin-left: 50%; */
+        }
+        
+        .fa:hover {
+            cursor: pointer;
+        }
+        
+        body {
+            font-family: 'Nerko One', cursive;
+            background: #283c86;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #45a247, #283c86);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #45a247, #283c86);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        h2 {
+            color: white;
+            font-size: 50px;
+        }
+        
+        #inp {
+            opacity: 0.7;
+            outline: transparent;
+            height: 40px!important;
+            min-width: 40%;
+        }
+        
+        #msg {
+            opacity: 0.7;
+            outline: transparent;
+            min-width: 40%;
+            height: 40px!important;
+        }
+        
+        .btn {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border-radius: 20px;
+            margin: 5px;
+        }
+        
+        p {
+            color: rgba(236, 235, 235, 0.753);
+            font-size: 30px;
+        }
+        
+        .frst {
+            color: rgba(0, 0, 0, 0.753);
+            font-size: 30px;
+            padding: 5px;
+        }
+        
+        #xyz {
+            margin-left: 20%;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="container-fluid">
+        <marquee behavior="scroll" direction="right" scrollamount="12">
+            <h2>Magic 8-ball</h2>
+        </marquee>
+
+
+        <div class="shake-slow">
+
+            <img src="magic.png" alt="">
+        </div>
+        <div class="icon">
+            <i class="fa fa-trash" aria-hidden="true" onclick="reset()"></i></div>
+        <input type="text" id="inp" placeholder="Enter Name">
+        <input type="submit" class="btn" onclick="greet()">
+
+
+        <p id="demo"></p>
+        <div id="xyz" class="hid">
+            <p class="frst">What do you want to know:</p>
+            <input type="text" id="msg" placeholder="Type your question">
+            <input type="button" class="btn" value="Predict Now" id="ans" onclick="answer()">
+            <p id="answer_"></p>
+
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var rn;
+
+
+        function greet() {
+            var userName = document.getElementById("inp").value;
+
+            document.getElementById("demo").innerHTML = "Hello " + userName;
+            document.getElementById("xyz").classList.remove("hid")
+
+        }
+
+
+
+        function answer() {
+            var msg = document.getElementById("msg").value
+            if (msg == '') {
+                document.getElementById("answer_").innerHTML = "Question to pucho bhai"
+            } else {
+                rn = Math.floor(Math.random() * 8)
+                console.log(rn);
+                var ans = ['It is certain',
+                    'It is decidedly so',
+                    'Reply hazy try again',
+                    'Cannot predict now',
+                    'Do not count on it',
+                    'My sources say no',
+                    'Outlook not so good',
+                    'Signs point to yes'
+                ]
+                ans = ans[rn];
+                console.log(ans)
+                document.getElementById("answer_").innerHTML = ans
+
+
+            }
+        }
+
+
+
+        function reset() {
+            document.getElementById("demo").innerHTML = "";
+            document.getElementById("inp").value = null;
+
+            document.getElementById("xyz").classList.add("hid")
+            document.getElementById("answer_").innerHTML = '';
+
+            document.getElementById("msg").value = null;
+
+        }
+    </script>
+</body>
+
+</html>
